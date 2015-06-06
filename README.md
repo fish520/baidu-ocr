@@ -18,21 +18,36 @@ How to use
 ===========
 
     var ocr = require('baidu-ocr').create( 'your api key' ),
-      image = './love-letter.jpg';
+      image = __dirname + '/love-letter.jpg';
 
-    scan( detectType, languageType, imageType, image, function( err, data ) {
-  
-    })
-
-    // detectType: LocateRecognize: 整图文字检测、识别,以行为单位（默认）
-    // languageType: CHN_ENG(中英)（默认）
-    // imageType: 2代表图片原文件（只支持JPG）
-    // image: 图片路径
-
+    // detectType: `LocateRecognize`代表整图文字检测、识别,以行为单位（默认）  
+    // languageType: `CHN_ENG`(中英)（默认）  
+    // imageType: `2`代表图片原文件（只支持JPG）  
+    // image: 图片路径  
     ocr.scan( 'LocateRecognize', 'CHN_ENG', 2, image, function( err, data ) {
-  
+      if ( err ) {
+        return console.error( err );
+      }
+
+      console.log( 'words:' );
+      console.log( data.word );
     });
 
+实测
+===========
+
+识别率几乎100%
+
+![启示录](https://github.com/JeremyWei/baidu-ocr/blob/master/test/001.jpg)
+
+```
+公司投入宝贵的时间和金钱之前，淘汰蹩脚的创意，找出对公司最有利的机会。
+产品的机会评估结果出来后，别忘了呈报给公司高管，与高管讨论，决定是否
+开发此产品。如果决定继续开发，了解高管的想法，有助于你尔进一步开展工作。
+如果cEo告诉你不管愿不愿意，都要继续开发，该怎么办？在这种情况下，迅速
+进行机会评估，明确产品需求也是必要的你得到的结论可能会改变CEO的看法，
+即使不能，至少你能明确产品目标，大大提高产品成功的可能性。
+```
 
 LICENSE
 ===========
